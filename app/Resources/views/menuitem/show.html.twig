@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Menuitem</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nombremenu</th>
+                <td>{{ menuitem.nombreMenu }}</td>
+            </tr>
+            <tr>
+                <th>Idmenuitem</th>
+                <td>{{ menuitem.idMenuitem }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('menuitem_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('menuitem_edit', { 'idMenuitem': menuitem.idMenuitem }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

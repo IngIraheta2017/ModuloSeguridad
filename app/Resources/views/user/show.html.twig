@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nombrecompleto</th>
+                <td>{{ user.nombrecompleto }}</td>
+            </tr>
+            <tr>
+                <th>Cargoinstitucional</th>
+                <td>{{ user.cargoinstitucional }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.userName }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Facultadpertenece</th>
+                <td>{{ user.facultadpertenece }}</td>
+            </tr>
+            <tr>
+                <th>Idioma</th>
+                <td>{{ user.idioma }}</td>
+            </tr>
+            <tr>
+                <th>Preparacionacademica</th>
+                <td>{{ user.preparacionacademica }}</td>
+            </tr>
+            <tr>
+                <th>Capacitacion</th>
+                <td>{{ user.capacitacion }}</td>
+            </tr>
+            <tr>
+                <th>Ponencia</th>
+                <td>{{ user.ponencia }}</td>
+            </tr>
+            <tr>
+                <th>Publicacion</th>
+                <td>{{ user.publicacion }}</td>
+            </tr>
+            <tr>
+                <th>Isagree</th>
+                <td>{% if user.isagree %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Creatat</th>
+                <td>{% if user.creatat %}{{ user.creatat|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updateat</th>
+                <td>{% if user.updateat %}{{ user.updateat|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ user.idUser }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('user_edit', { 'idUser': user.idUser }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

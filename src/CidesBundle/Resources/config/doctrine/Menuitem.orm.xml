@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CidesBundle\Entity\Menuitem" table="menuItem">
+    <indexes>
+      <index name="FK_Association_16" columns="men_id_menuItem"/>
+    </indexes>
+    <id name="idMenuitem" type="integer" column="id_menuItem">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombreMenu" type="string" column="nombre_menu" length="255" nullable="false"/>
+    <many-to-one field="menMenuitem" target-entity="Menuitem">
+      <join-columns>
+        <join-column name="men_id_menuItem" referenced-column-name="id_menuItem"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

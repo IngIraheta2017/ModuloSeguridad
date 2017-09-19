@@ -1,0 +1,125 @@
+<?php
+
+namespace CidesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Actividad
+ *
+ * @ORM\Table(name="actividad", indexes={@ORM\Index(name="FK_Association_10", columns={"act_id_actividad2"}), @ORM\Index(name="FK_Association_22", columns={"id_user"}), @ORM\Index(name="FK_Association_25", columns={"act_id_actividad"}), @ORM\Index(name="FK_Association_8", columns={"id_proyecto"}), @ORM\Index(name="FK_Association_9", columns={"act_id_actividad3"})})
+ * @ORM\Entity
+ */
+class Actividad
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=254, nullable=true)
+     */
+    private $nombre;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_inicio", type="datetime", nullable=true)
+     */
+    private $fechaInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_fin", type="datetime", nullable=true)
+     */
+    private $fechaFin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duracion", type="integer", nullable=true)
+     */
+    private $duracion;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_actividad", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idActividad;
+
+    /**
+     * @var \CidesBundle\Entity\Proyecto
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\Proyecto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_proyecto", referencedColumnName="id_proyecto")
+     * })
+     */
+    private $idProyecto;
+
+    /**
+     * @var \CidesBundle\Entity\Actividad
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\Actividad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="act_id_actividad", referencedColumnName="id_actividad")
+     * })
+     */
+    private $actActividad;
+
+    /**
+     * @var \CidesBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
+     */
+    private $idUser;
+
+    /**
+     * @var \CidesBundle\Entity\Actividad
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\Actividad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="act_id_actividad3", referencedColumnName="id_actividad")
+     * })
+     */
+    private $actActividad3;
+
+    /**
+     * @var \CidesBundle\Entity\Actividad
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\Actividad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="act_id_actividad2", referencedColumnName="id_actividad")
+     * })
+     */
+    private $actActividad2;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="CidesBundle\Entity\Recurso", inversedBy="idActividad")
+     * @ORM\JoinTable(name="tieneasignado",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="id_actividad", referencedColumnName="id_actividad")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="id_recurso", referencedColumnName="id_recurso")
+     *   }
+     * )
+     */
+    private $idRecurso;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idRecurso = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

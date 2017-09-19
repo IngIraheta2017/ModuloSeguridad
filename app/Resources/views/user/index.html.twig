@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Users list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombrecompleto</th>
+                <th>Cargoinstitucional</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Facultadpertenece</th>
+                <th>Idioma</th>
+                <th>Preparacionacademica</th>
+                <th>Capacitacion</th>
+                <th>Ponencia</th>
+                <th>Publicacion</th>
+                <th>Isagree</th>
+                <th>Creatat</th>
+                <th>Updateat</th>
+                <th>Iduser</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('user_show', { 'idUser': user.idUser }) }}">{{ user.nombrecompleto }}</a></td>
+                <td>{{ user.cargoinstitucional }}</td>
+                <td>{{ user.userName }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.facultadpertenece }}</td>
+                <td>{{ user.idioma }}</td>
+                <td>{{ user.preparacionacademica }}</td>
+                <td>{{ user.capacitacion }}</td>
+                <td>{{ user.ponencia }}</td>
+                <td>{{ user.publicacion }}</td>
+                <td>{% if user.isagree %}Yes{% else %}No{% endif %}</td>
+                <td>{% if user.creatat %}{{ user.creatat|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if user.updateat %}{{ user.updateat|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ user.idUser }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_show', { 'idUser': user.idUser }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('user_edit', { 'idUser': user.idUser }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_new') }}">Create a new user</a>
+        </li>
+    </ul>
+{% endblock %}

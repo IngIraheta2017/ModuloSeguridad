@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tipoderecursos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombretipo</th>
+                <th>Descripciontipo</th>
+                <th>Idtipoderecurso</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipoderecurso in tipoderecursos %}
+            <tr>
+                <td><a href="{{ path('tipoderecurso_show', { 'idTipoderecurso': tipoderecurso.idTipoderecurso }) }}">{{ tipoderecurso.nombreTipo }}</a></td>
+                <td>{{ tipoderecurso.descripcionTipo }}</td>
+                <td>{{ tipoderecurso.idTipoderecurso }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tipoderecurso_show', { 'idTipoderecurso': tipoderecurso.idTipoderecurso }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tipoderecurso_edit', { 'idTipoderecurso': tipoderecurso.idTipoderecurso }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tipoderecurso_new') }}">Create a new tipoderecurso</a>
+        </li>
+    </ul>
+{% endblock %}

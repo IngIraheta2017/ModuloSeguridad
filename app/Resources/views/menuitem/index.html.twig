@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Menuitems list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre </th>
+                <th>Identificador </th>
+                <th>Menu Predecesor</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for menuitem in menuitems %}
+            <tr>
+                <td><a href="{{ path('menuitem_show', { 'idMenuitem': menuitem.idMenuitem }) }}">{{ menuitem.nombreMenu }}</a></td>
+                <td>{{ menuitem.idMenuitem }}</td>
+                <td>{{ menuitem.menMenuitem }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('menuitem_show', { 'idMenuitem': menuitem.idMenuitem }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('menuitem_edit', { 'idMenuitem': menuitem.idMenuitem }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('menuitem_new') }}">Create a new menuitem</a>
+        </li>
+    </ul>
+{% endblock %}

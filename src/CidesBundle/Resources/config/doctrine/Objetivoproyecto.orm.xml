@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CidesBundle\Entity\Objetivoproyecto" table="objetivoProyecto">
+    <indexes>
+      <index name="FK_Association_4" columns="id_proyecto"/>
+    </indexes>
+    <id name="idObjetivoproyecto" type="integer" column="id_objetivoProyecto">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descripcionObjetivo" type="string" column="descripcion_objetivo" length="254" nullable="true"/>
+    <many-to-one field="idProyecto" target-entity="Proyecto">
+      <join-columns>
+        <join-column name="id_proyecto" referenced-column-name="id_proyecto"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

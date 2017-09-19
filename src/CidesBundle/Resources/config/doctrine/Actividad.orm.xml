@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CidesBundle\Entity\Actividad" table="actividad">
+    <indexes>
+      <index name="FK_Association_10" columns="act_id_actividad2"/>
+      <index name="FK_Association_22" columns="id_user"/>
+      <index name="FK_Association_25" columns="act_id_actividad"/>
+      <index name="FK_Association_8" columns="id_proyecto"/>
+      <index name="FK_Association_9" columns="act_id_actividad3"/>
+    </indexes>
+    <id name="idActividad" type="integer" column="id_actividad">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="254" nullable="true"/>
+    <field name="fechaInicio" type="datetime" column="fecha_inicio" nullable="true"/>
+    <field name="fechaFin" type="datetime" column="fecha_fin" nullable="true"/>
+    <field name="duracion" type="integer" column="duracion" nullable="true"/>
+    <many-to-one field="idProyecto" target-entity="Proyecto">
+      <join-columns>
+        <join-column name="id_proyecto" referenced-column-name="id_proyecto"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="actActividad" target-entity="Actividad">
+      <join-columns>
+        <join-column name="act_id_actividad" referenced-column-name="id_actividad"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUser" target-entity="User">
+      <join-columns>
+        <join-column name="id_user" referenced-column-name="id_user"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="actActividad3" target-entity="Actividad">
+      <join-columns>
+        <join-column name="act_id_actividad3" referenced-column-name="id_actividad"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="actActividad2" target-entity="Actividad">
+      <join-columns>
+        <join-column name="act_id_actividad2" referenced-column-name="id_actividad"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="idRecurso" target-entity="Recurso" inversed-by="idActividad">
+      <join-table name="tieneasignado">
+        <join-columns>
+          <join-column name="id_actividad" referenced-column-name="id_actividad"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="id_recurso" referenced-column-name="id_recurso"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

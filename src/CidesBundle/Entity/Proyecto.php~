@@ -1,0 +1,85 @@
+<?php
+
+namespace CidesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Proyecto
+ *
+ * @ORM\Table(name="proyecto", indexes={@ORM\Index(name="FK_Association_1", columns={"id_estadoDeProyecto"})})
+ * @ORM\Entity
+ */
+class Proyecto
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_proyecto", type="string", length=254, nullable=true)
+     */
+    private $nombreProyecto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tema_proyecto", type="string", length=254, nullable=true)
+     */
+    private $temaProyecto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="justificacion_proyecto", type="string", length=254, nullable=true)
+     */
+    private $justificacionProyecto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resultados_esperados", type="string", length=254, nullable=true)
+     */
+    private $resultadosEsperados;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_proyecto", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idProyecto;
+
+    /**
+     * @var \CidesBundle\Entity\Estadodeproyecto
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\Estadodeproyecto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_estadoDeProyecto", referencedColumnName="id_estadoDeProyecto")
+     * })
+     */
+    private $idEstadodeproyecto;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="CidesBundle\Entity\Recurso", inversedBy="idProyecto")
+     * @ORM\JoinTable(name="necesita",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="id_proyecto", referencedColumnName="id_proyecto")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="id_recurso", referencedColumnName="id_recurso")
+     *   }
+     * )
+     */
+    private $idRecurso;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idRecurso = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

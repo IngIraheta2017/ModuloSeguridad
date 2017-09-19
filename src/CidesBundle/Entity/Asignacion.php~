@@ -1,0 +1,45 @@
+<?php
+
+namespace CidesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Asignacion
+ *
+ * @ORM\Table(name="asignacion", indexes={@ORM\Index(name="FK_Association_19", columns={"id_proyecto"}), @ORM\Index(name="FK_Association_20", columns={"id_user"})})
+ * @ORM\Entity
+ */
+class Asignacion
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_asignacion", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idAsignacion;
+
+    /**
+     * @var \CidesBundle\Entity\Proyecto
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\Proyecto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_proyecto", referencedColumnName="id_proyecto")
+     * })
+     */
+    private $idProyecto;
+
+    /**
+     * @var \CidesBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="CidesBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
+     */
+    private $idUser;
+
+
+}

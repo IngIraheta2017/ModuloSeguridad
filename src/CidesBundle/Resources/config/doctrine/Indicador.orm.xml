@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CidesBundle\Entity\Indicador" table="indicador">
+    <indexes>
+      <index name="FK_Association_6" columns="id_proyecto"/>
+    </indexes>
+    <id name="idIndicador" type="integer" column="id_indicador">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descripcionIndicador" type="string" column="descripcion_indicador" length="254" nullable="true"/>
+    <field name="tipoIndicador" type="string" column="tipo_indicador" length="254" nullable="true"/>
+    <field name="nombreIndicador" type="string" column="nombre_indicador" length="254" nullable="true"/>
+    <many-to-one field="idProyecto" target-entity="Proyecto">
+      <join-columns>
+        <join-column name="id_proyecto" referenced-column-name="id_proyecto"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

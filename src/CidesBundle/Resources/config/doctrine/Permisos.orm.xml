@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CidesBundle\Entity\Permisos" table="permisos">
+    <indexes>
+      <index name="FK_Association_14" columns="id_rol"/>
+      <index name="FK_Association_15" columns="id_menuItem"/>
+    </indexes>
+    <id name="idPermisos" type="integer" column="id_permisos">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idRol" type="integer" column="id_rol" nullable="false"/>
+    <field name="idMenuitem" type="integer" column="id_menuItem" nullable="false"/>
+  </entity>
+</doctrine-mapping>

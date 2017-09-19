@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CidesBundle\Entity\Proyecto" table="proyecto">
+    <indexes>
+      <index name="FK_Association_1" columns="id_estadoDeProyecto"/>
+    </indexes>
+    <id name="idProyecto" type="integer" column="id_proyecto">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombreProyecto" type="string" column="nombre_proyecto" length="254" nullable="true"/>
+    <field name="temaProyecto" type="string" column="tema_proyecto" length="254" nullable="true"/>
+    <field name="justificacionProyecto" type="string" column="justificacion_proyecto" length="254" nullable="true"/>
+    <field name="resultadosEsperados" type="string" column="resultados_esperados" length="254" nullable="true"/>
+    <many-to-one field="idEstadodeproyecto" target-entity="Estadodeproyecto">
+      <join-columns>
+        <join-column name="id_estadoDeProyecto" referenced-column-name="id_estadoDeProyecto"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="idRecurso" target-entity="Recurso" inversed-by="idProyecto">
+      <join-table name="necesita">
+        <join-columns>
+          <join-column name="id_proyecto" referenced-column-name="id_proyecto"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="id_recurso" referenced-column-name="id_recurso"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

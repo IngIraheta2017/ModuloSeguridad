@@ -1,0 +1,39 @@
+<?php
+
+namespace CidesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Estadodeproyecto
+ *
+ * @ORM\Table(name="estadoDeProyecto")
+ * @ORM\Entity
+ */
+class Estadodeproyecto
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_estado", type="string", length=254, nullable=true)
+     */
+    private $nombreEstado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion_estado", type="string", length=254, nullable=true)
+     */
+    private $descripcionEstado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_estadoDeProyecto", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEstadodeproyecto;
+
+
+}
